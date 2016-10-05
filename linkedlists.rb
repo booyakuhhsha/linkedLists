@@ -11,8 +11,8 @@ class LinkedList
   	  @head = value
   	  @tail = value
   	else
-  	  value.next_node = @head #new entry will point to current head
-  	  @head = value #we assign the new entry to the head
+  	  node = Node.new(value,@head) #new entry will point to current head
+  	  @head = node #we assign the new entry to the head
   	end
   end
 
@@ -90,6 +90,7 @@ class LinkedList
   	  return false
   	else
   	  return false
+  	end
   end
 
   def find(data) #loop through all nodes, check if any value = data and then have a counter
@@ -127,6 +128,7 @@ class LinkedList
 
   def insert_at(index) #loop through nodes until 
 
+  end
 end
 
 class Node
@@ -137,3 +139,13 @@ class Node
   end
 
 end
+
+list = LinkedList.new
+puts list.head.value
+puts list.append(5)
+puts list.append(4)
+puts list.prepend(3)
+puts list.size
+puts list.tail
+puts list.tail.value
+
