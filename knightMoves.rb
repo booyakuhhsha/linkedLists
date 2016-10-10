@@ -33,45 +33,61 @@ class Node
 
 		if ((@position[0]+2) < 8 && (@position[1]+1) < 8)
 			move1 = [@position[0] + 2,@position[1] + 1]
-			
+			if !$visited.include?(move1)
 				node = Node.new(@position,move1)
 					$visited << node.position
-				@children << node; end
+				@children << node
+				node.make_children;end; end
 		if (@position[0]-2) >= 0 && (@position[1]-1) >= 0
 			move2 = [@position[0] - 2,@position[1] - 1]
-			node = Node.new(@position,move2)
-				$visited << node.position
-			@children << Node.new(@position,move2);end
+			if !$visited.include?(move2)
+				node = Node.new(@position,move2)
+					$visited << node.position
+				@children << node
+				node.make_children;end;end
 		if (@position[0]-2) >= 0 && (@position[1]+1) < 8
 			move3 = [@position[0] - 2,@position[1] + 1]
-			node = Node.new(@position,move3)
-				$visited << node.position
-			@children << Node.new(@position,move3);end
+			if !$visited.include?(move3)
+				node = Node.new(@position,move3)
+					$visited << node.position
+				@children << node
+				node.make_children;end;end
 		if (@position[0]+2) < 8 && (@position[1]-1) >= 0
 			move4 = [@position[0] + 2,@position[1] - 1]
-			node = Node.new(@position,move4)
-				$visited << node.position
-			@children << Node.new(@position,move4);end
+			if !$visited.include?(move4)
+				node = Node.new(@position,move4)
+					$visited << node.position
+				@children << node
+				node.make_children;end;end
 		if (@position[0]+1) < 8 && (@position[1]+2) < 8
 			move5 = [@position[0] + 1,@position[1] + 2]
-			node = Node.new(@position,move5)
-				$visited << node.position
-			@children << Node.new(@position,move5);end
+			if !$visited.include?(move5)
+				node = Node.new(@position,move5)
+					$visited << node.position
+				@children << node
+				node.make_children;end;end
 		if (@position[0]-1) >=0 && (@position[1]+2) < 8
 			move6 = [@position[0] - 1,@position[1] + 2]
-			node = Node.new(@position,move6)
-				$visited << node.position
-			@children << Node.new(@position,move6);end
+			if !$visited.include?(move6)
+				node = Node.new(@position,move6)
+					$visited << node.position
+				@children << node
+				node.make_children;end;end
 		if (@position[0]+1) < 8 && (@position[1]-2) >= 0
 			move7 = [@position[0] + 1,@position[1] - 2]
-			node = Node.new(@position,move7)
-				$visited << node.position
-			@children << Node.new(@position,move7);end
+			if !$visited.include?(move7)
+				node = Node.new(@position,move7)
+					$visited << node.position
+				@children << node
+				node.make_children;end;end
 		if (@position[0]-1) >= 0 && (@position[1]-2) >= 0
 			move8 = [@position[0] - 1,@position[1] - 2]
-			node = Node.new(@position,move8)
-				$visited << node.position
-			@children << Node.new(@position,move8)			
+			if !$visited.include?(move8)
+				node = Node.new(@position,move8)
+					$visited << node.position
+				@children << node
+				node.make_children
+			end		
 		end
 		return @children
 	end
@@ -115,7 +131,8 @@ start = [1,2]
 puts ""
 tree = Tree.new([1,2])
 print tree.source.make_children
-puts ""
+puts "\n\n"
 puts "We have visited the following: #{$visited}"
+puts "\n\n The amount of nodes visited is: #{$visited.length}"
 
 
