@@ -28,5 +28,5 @@ tree.each_ {|node| puts "Value is: #{}node.value}"
 #first node is root -> can be pushed to tree
 #next node gets compared with root -> root.left if smaller, root.right if larger
 #third node gets compared with root -> left or right -> keeps going left or right until it finds a vacant spot
-
+#loops through nodes, goes left or right until it finds an unoccupied spot
 

@@ -44,6 +44,7 @@ def breadth_first_search(search_value, tree)
 
   while queue != nil
     current = queue.shift
+    puts "The current node is #{current} with a value of #{current.value}"
     visited << current
     left, right = current.left, current.right
 
@@ -52,7 +53,7 @@ def breadth_first_search(search_value, tree)
       exit
     end
 
-    if !left.nil? && !visited.include?(left)
+    if !left.nil? && !visited.include?(left)#check if left has a node and check if it has been visited
       if left.value == search_value
         puts left
         exit
@@ -75,7 +76,41 @@ def breadth_first_search(search_value, tree)
   puts "nil"
 end
 
+def depth_first_search(search_value, tree)
+  stack = [tree]
+  visited = [tree]
 
+  while !stack.empty?
+    current = stack.last
+    left, right = current.left, current.right
+    puts "The current node is #{current} and the value is #{current.value}"
+
+    if current.value == search_value
+      
+      puts current
+      exit
+    elsif !left.nil? && !visited.include?(left)
+      if left.value == search_value
+        puts left
+        exit
+      else
+        visited << left
+        stack << left
+      end
+    elsif !right.nil? && !visited.include?(right)
+      if right.value == search_value
+        puts right
+        exit
+      else
+        visited << right
+        stack << right
+      end
+    else
+      stack.pop
+    end
+  end
+  puts "nil"
+end
 
 
 array = [7, 4, 9, 23, 8, 3, 5, 67, 6345, 324]
@@ -86,5 +121,5 @@ tree = Node.new(array[0])
 array.each { |item| tree.insert(item)}
 puts tree.inspect
 puts ""
-puts breadth_first_search(324,tree)
-puts breadth_first_search(324,tree).value
+puts depth_first_search(67,tree)
+
