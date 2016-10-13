@@ -1,96 +1,104 @@
-class Knight
-	attr_accessor :start, :end
-	def initialize(start)
-		@start = start
-	end
-	def possible_moves
-		moves = []
-		move1 = @start + [2,1]
-	end
 
-end
-
-class Tree
-	attr_accessor :source, :visited
-	def initialize(starting_position)
-		@source = Node.new(starting_position)
-		$visited = []
-	end
-
-	
-
-end
-
+$visited = []
 class Node
-	attr_accessor :predecessor,:children,:position
+	attr_accessor :predecessor,:children,:position,:all_moves
 	def initialize (predecessor=nil,position)
 		@position = position
 		@predecessor = predecessor
+		@all_moves = []
 		@children = []
 	end
 
-	def make_children
-
-		if ((@position[0]+2) < 8 && (@position[1]+1) < 8)
-			move1 = [@position[0] + 2,@position[1] + 1]
-			if !$visited.include?(move1)
-				node = Node.new(@position,move1)
-					$visited << node.position
-				@children << node
-				node.make_children;end; end
-		if (@position[0]-2) >= 0 && (@position[1]-1) >= 0
-			move2 = [@position[0] - 2,@position[1] - 1]
-			if !$visited.include?(move2)
+	def make_children(target)
+		puts "\nThe current node is: #{self.position}"
+		#while $visited != target
+			if ((@position[0]+2) < 8 && (@position[1]+1) < 8)
+				move1 = [@position[0] + 2,@position[1] + 1]
+				
+					node = Node.new(@position,move1)
+					#all_moves << node
+				if !$visited.include?(move1)		
+						$visited << node.position
+						@children << node
+					;end; end
+			if (@position[0]-2) >= 0 && (@position[1]-1) >= 0
+				move2 = [@position[0] - 2,@position[1] - 1]
 				node = Node.new(@position,move2)
-					$visited << node.position
-				@children << node
-				node.make_children;end;end
-		if (@position[0]-2) >= 0 && (@position[1]+1) < 8
-			move3 = [@position[0] - 2,@position[1] + 1]
-			if !$visited.include?(move3)
+				#all_moves << node
+				if !$visited.include?(move2)
+					
+						$visited << node.position
+						@children << node
+					;end;end
+			if (@position[0]-2) >= 0 && (@position[1]+1) < 8
+				move3 = [@position[0] - 2,@position[1] + 1]
 				node = Node.new(@position,move3)
-					$visited << node.position
-				@children << node
-				node.make_children;end;end
-		if (@position[0]+2) < 8 && (@position[1]-1) >= 0
-			move4 = [@position[0] + 2,@position[1] - 1]
-			if !$visited.include?(move4)
+				#all_moves << node
+				if !$visited.include?(move3)
+					
+						$visited << node.position
+						@children << node
+					;end;end
+			if (@position[0]+2) < 8 && (@position[1]-1) >= 0
+				move4 = [@position[0] + 2,@position[1] - 1]
 				node = Node.new(@position,move4)
-					$visited << node.position
-				@children << node
-				node.make_children;end;end
-		if (@position[0]+1) < 8 && (@position[1]+2) < 8
-			move5 = [@position[0] + 1,@position[1] + 2]
-			if !$visited.include?(move5)
+				#all_moves << node
+				if !$visited.include?(move4)
+					
+						$visited << node.position
+						@children << node
+					;end;end
+			if (@position[0]+1) < 8 && (@position[1]+2) < 8
+				move5 = [@position[0] + 1,@position[1] + 2]
 				node = Node.new(@position,move5)
-					$visited << node.position
-				@children << node
-				node.make_children;end;end
-		if (@position[0]-1) >=0 && (@position[1]+2) < 8
-			move6 = [@position[0] - 1,@position[1] + 2]
-			if !$visited.include?(move6)
+				#all_moves << node
+				if !$visited.include?(move5)
+					
+						$visited << node.position
+						@children << node
+					;end;end
+			if (@position[0]-1) >=0 && (@position[1]+2) < 8
+				move6 = [@position[0] - 1,@position[1] + 2]
 				node = Node.new(@position,move6)
-					$visited << node.position
-				@children << node
-				node.make_children;end;end
-		if (@position[0]+1) < 8 && (@position[1]-2) >= 0
-			move7 = [@position[0] + 1,@position[1] - 2]
-			if !$visited.include?(move7)
+				#all_moves << node
+				if !$visited.include?(move6)
+					
+						$visited << node.position
+						@children << node
+					;end;end
+			if (@position[0]+1) < 8 && (@position[1]-2) >= 0
+				move7 = [@position[0] + 1,@position[1] - 2]
 				node = Node.new(@position,move7)
-					$visited << node.position
-				@children << node
-				node.make_children;end;end
-		if (@position[0]-1) >= 0 && (@position[1]-2) >= 0
-			move8 = [@position[0] - 1,@position[1] - 2]
-			if !$visited.include?(move8)
+				#all_moves << node
+				if !$visited.include?(move7)
+					
+						$visited << node.position
+						@children << node
+					;end;end
+			if (@position[0]-1) >= 0 && (@position[1]-2) >= 0
+				move8 = [@position[0] - 1,@position[1] - 2]
 				node = Node.new(@position,move8)
-					$visited << node.position
-				@children << node
-				node.make_children
-			end		
-		end
-		return @children
+				#all_moves << node
+				if !$visited.include?(move8)
+					
+						$visited << node.position
+						@children << node
+					
+				end	
+
+			end
+			
+			
+			@children.each { |node| node.make_children(target)}
+		
 	end
+end
+
+def knight_move(start,finish)
+	if start == finish
+		puts "Zero moves to get to finish"
+	end
+	source = Node.new(start)
 end
 
 def possible_moves(start)
@@ -123,16 +131,35 @@ def possible_moves(start)
 	return potential_moves
 end
 
+def breadth_first_search(search_value, tree)
+  queue = [tree]
+  visited = [tree]
 
-start = [1,2]
+  current = queue.shift
+  print current
+  
+end
 
+start = [0,0]
+target = [3,3]
 
 #print possible_moves(start)
-puts ""
-tree = Tree.new([1,2])
-print tree.source.make_children
+
+source = Node.new(start)
+tree = source.make_children(target)
+
+
 puts "\n\n"
 puts "We have visited the following: #{$visited}"
 puts "\n\n The amount of nodes visited is: #{$visited.length}"
+puts "BFS"
+#breadth_first_search([3,3],tree)
+#print tree.inspect
+queue = [tree] #this is a fucking bullshit, youre putting array within array
+print tree.shift.position
+print tree.shift.position
+print tree.shift.position
+
+
 
 
