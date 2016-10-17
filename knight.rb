@@ -71,7 +71,7 @@ class Node
 				$visited << node.position
 			@children << node			
 		end
-		puts  "We have visited #{$visited.uniq.length} unique squares"
+		#puts  "We have visited #{$visited.uniq.length} unique squares"
 			@children.each { |child| child.make_children2}
 		
 	end
@@ -145,7 +145,7 @@ class Node
 			#end
 			$visited << node.position
 		end
-		puts  "We have visited #{$visited.uniq.length} unique squares"
+		#puts  "We have visited #{$visited.uniq.length} unique squares"
 		@children.each { |child| child.make_children3}
 		
 		
@@ -218,7 +218,7 @@ class Node
 			#end
 			$visited << node.position
 		end
-		puts  "We have visited #{$visited.uniq.length} unique squares"
+		#puts  "We have visited #{$visited.uniq.length} unique squares"
 		@children.each { |child| child.make_children4}
 		
 	end
@@ -290,7 +290,7 @@ class Node
 			#end
 			$visited << node.position
 		end
-		puts  "We have visited #{$visited.uniq.length} unique squares"
+		#puts  "We have visited #{$visited.uniq.length} unique squares"
 		
 		
 	end
@@ -327,28 +327,30 @@ def possible_moves(start)
 end
 
 def knight_moves(start,target,tree)
-	queue = tree
+	queue = [tree]
 	queue2 = []
-		queue.each do |node|
+	visited = []	
+	while !visited.include? target	
+		queue[0].each do |node|
 			queue2 << node.children
+			visited << node.position
 			if node.position == target
 				get_path(node)
 				exit
 			end	
 		end
-
+		queue = []
 		queue2[0].each do |node|
-			
-						if node.position == target
-							get_path(node)
-							exit
-						#else
-							#queue2 << current.children	
-						end	
 					
-				end
-			
-		
+			if node.position == target
+				get_path(node)
+				exit
+			else
+				queue << node.children	
+			end		
+		end
+		queue2 = []
+	end	
 		#get path via while loop, while @node has a predecessor, that will be the path, and then keep storing and going up
 
 end
@@ -366,52 +368,24 @@ def get_path(node)
 		end
 		count = count + 1
 	end
-	puts "It took #{count} moves and the path is: "
+	puts "\n\nIt took #{count} moves and the path is: "
 	path.reverse.each { |node| puts "#{node.position}"}
 end
 
-start = [0,0]
-target = [5,4]
+start = [2,2]
+target = [5,5]
 
 #print possible_moves(start)
 puts ""
 tree = Tree.new(start)
 tree =  tree.source.make_children
-print tree
+#print tree
+puts "Once upon a time there was a Knight"
+puts "He was on a chess board and he was on square #{start}"
+puts "But he wanted to get to square #{target}"
+puts "So his buddy Dom made him a program to help him find his path"
 
 
-
-puts "\n\nWe have visited #{$visited.uniq.length} unique squares and they are: #{$visited.uniq}\n\n"
-queue =[]
-puts "The parent is: "
-print tree[0].position
-puts "\nAnd the children are: "
-queue = tree[0].children
-
-puts ""
-queue.each {|node| print node.position}
-queue2 = queue[0].children
-puts "\n\nThe parent is now #{queue[0].position}"
-puts "The children are: "
-queue2.each {|node| print node.position}
-
-puts ""
-queue3 = queue[2].children
-puts "\n\nThe parent is now #{queue[2].position}"
-puts "The children are: "
-queue3.each {|node| print node.position}
-
-puts "\n\nThe parent is: "
-print tree[1].position
-puts "\nAnd the children are: "
-queue = tree[1].children
-
-puts ""
-queue.each {|node| print node.position}
-queue2 = queue[0].children
-puts "\n\nThe parent is now #{queue[0].position}"
-puts "The children are: "
-queue2.each {|node| print node.position}
 
 knight_moves(start,target,tree)
 
