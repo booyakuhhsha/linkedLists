@@ -22,8 +22,8 @@ end
 class Node
 	attr_accessor :predecessor,:children,:position
 	def initialize (predecessor=nil,position)
-		@position = position
 		@predecessor = predecessor
+		@position = position
 		@children = []
 	end
 
@@ -336,19 +336,19 @@ def knight_moves(start,target,tree)
 				exit
 			end	
 		end
-		while queue2 != nil
-			queue2.each do |childrenarray|
-				childrenarray.each do |node|
-					current = node
-					if current.position == target
-						get_path(current)
-						exit
-					#else
-						#queue2 << current.children	
-					end	
+
+		queue2[0].each do |node|
+			
+						if node.position == target
+							get_path(node)
+							exit
+						#else
+							#queue2 << current.children	
+						end	
+					
 				end
-			end
-		end
+			
+		
 		#get path via while loop, while @node has a predecessor, that will be the path, and then keep storing and going up
 
 end
@@ -356,8 +356,14 @@ end
 def get_path(node)
 	path =[]
 	count = 0
-	while node.predecessor != nil
-		path << node.predecessor
+	path << node.position
+	current = node.predecessor
+	puts current
+	while current != nil
+		path << current
+		if current != nil
+			current = current.predecessor
+		end
 		count = count + 1
 	end
 	puts "It took #{count} moves and the path is: "
@@ -365,7 +371,7 @@ def get_path(node)
 end
 
 start = [0,0]
-target = [6,6]
+target = [3,3]
 
 #print possible_moves(start)
 puts ""
@@ -407,5 +413,5 @@ puts "\n\nThe parent is now #{queue[0].position}"
 puts "The children are: "
 queue2.each {|node| print node.position}
 
-puts knight_moves(start,target,tree)
+knight_moves(start,target,tree)
 
