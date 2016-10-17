@@ -32,42 +32,42 @@ class Node
 		
 		if ((@position[0]+2) < 8 && (@position[1]+1) < 8)
 			move1 = [@position[0] + 2,@position[1] + 1]
-			node = Node.new(@position,move1)
+			node = Node.new(self,move1)
 				$visited << node.position
 			@children << node; end
 		if (@position[0]-2) >= 0 && (@position[1]-1) >= 0
 			move2 = [@position[0] - 2,@position[1] - 1]
-			node = Node.new(@position,move2)
+			node = Node.new(self,move2)
 				$visited << node.position
 			@children << node;end
 		if (@position[0]-2) >= 0 && (@position[1]+1) < 8
 			move3 = [@position[0] - 2,@position[1] + 1]
-			node = Node.new(@position,move3)
+			node = Node.new(self,move3)
 				$visited << node.position
 			@children << node;end
 		if (@position[0]+2) < 8 && (@position[1]-1) >= 0
 			move4 = [@position[0] + 2,@position[1] - 1]
-			node = Node.new(@position,move4)
+			node = Node.new(self,move4)
 				$visited << node.position
 			@children << node;end
 		if (@position[0]+1) < 8 && (@position[1]+2) < 8
 			move5 = [@position[0] + 1,@position[1] + 2]
-			node = Node.new(@position,move5)
+			node = Node.new(self,move5)
 				$visited << node.position
 			@children << node;end
 		if (@position[0]-1) >=0 && (@position[1]+2) < 8
 			move6 = [@position[0] - 1,@position[1] + 2]
-			node = Node.new(@position,move6)
+			node = Node.new(self,move6)
 				$visited << node.position
 			@children << node;end
 		if (@position[0]+1) < 8 && (@position[1]-2) >= 0
 			move7 = [@position[0] + 1,@position[1] - 2]
-			node = Node.new(@position,move7)
+			node = Node.new(self,move7)
 				$visited << node.position
 			@children << node;end
 		if (@position[0]-1) >= 0 && (@position[1]-2) >= 0
 			move8 = [@position[0] - 1,@position[1] - 2]
-			node = Node.new(@position,move8)
+			node = Node.new(self,move8)
 				$visited << node.position
 			@children << node			
 		end
@@ -83,7 +83,7 @@ class Node
 	
 		if ((@position[0]+2) < 8 && (@position[1]+1) < 8)
 			move1 = [@position[0] + 2,@position[1] + 1]
-			node = Node.new(@position,move1)
+			node = Node.new(self,move1)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -91,7 +91,7 @@ class Node
 		end
 		if (@position[0]-2) >= 0 && (@position[1]-1) >= 0
 			move2 = [@position[0] - 2,@position[1] - 1]
-			node = Node.new(@position,move2)
+			node = Node.new(self,move2)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -99,7 +99,7 @@ class Node
 		end
 		if (@position[0]-2) >= 0 && (@position[1]+1) < 8
 			move3 = [@position[0] - 2,@position[1] + 1]
-			node = Node.new(@position,move3)
+			node = Node.new(self,move3)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -107,7 +107,7 @@ class Node
 		end
 		if (@position[0]+2) < 8 && (@position[1]-1) >= 0
 			move4 = [@position[0] + 2,@position[1] - 1]
-			node = Node.new(@position,move4)
+			node = Node.new(self,move4)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -115,7 +115,7 @@ class Node
 		end
 		if (@position[0]+1) < 8 && (@position[1]+2) < 8
 			move5 = [@position[0] + 1,@position[1] + 2]
-			node = Node.new(@position,move5)
+			node = Node.new(self,move5)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -123,7 +123,7 @@ class Node
 		end
 		if (@position[0]-1) >=0 && (@position[1]+2) < 8
 			move6 = [@position[0] - 1,@position[1] + 2]
-			node = Node.new(@position,move6)
+			node = Node.new(self,move6)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -131,7 +131,7 @@ class Node
 		end
 		if (@position[0]+1) < 8 && (@position[1]-2) >= 0
 			move7 = [@position[0] + 1,@position[1] - 2]
-			node = Node.new(@position,move7)
+			node = Node.new(self,move7)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -139,7 +139,7 @@ class Node
 		end
 		if (@position[0]-1) >= 0 && (@position[1]-2) >= 0
 			move8 = [@position[0] - 1,@position[1] - 2]
-			node = Node.new(@position,move8)
+			node = Node.new(self,move8)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -156,7 +156,7 @@ class Node
 	
 		if ((@position[0]+2) < 8 && (@position[1]+1) < 8)
 			move1 = [@position[0] + 2,@position[1] + 1]
-			node = Node.new(@position,move1)
+			node = Node.new(self,move1)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -164,7 +164,7 @@ class Node
 		end
 		if (@position[0]-2) >= 0 && (@position[1]-1) >= 0
 			move2 = [@position[0] - 2,@position[1] - 1]
-			node = Node.new(@position,move2)
+			node = Node.new(self,move2)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -172,7 +172,7 @@ class Node
 		end
 		if (@position[0]-2) >= 0 && (@position[1]+1) < 8
 			move3 = [@position[0] - 2,@position[1] + 1]
-			node = Node.new(@position,move3)
+			node = Node.new(self,move3)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -180,7 +180,7 @@ class Node
 		end
 		if (@position[0]+2) < 8 && (@position[1]-1) >= 0
 			move4 = [@position[0] + 2,@position[1] - 1]
-			node = Node.new(@position,move4)
+			node = Node.new(self,move4)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -188,7 +188,7 @@ class Node
 		end
 		if (@position[0]+1) < 8 && (@position[1]+2) < 8
 			move5 = [@position[0] + 1,@position[1] + 2]
-			node = Node.new(@position,move5)
+			node = Node.new(self,move5)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -196,7 +196,7 @@ class Node
 		end
 		if (@position[0]-1) >=0 && (@position[1]+2) < 8
 			move6 = [@position[0] - 1,@position[1] + 2]
-			node = Node.new(@position,move6)
+			node = Node.new(self,move6)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -204,7 +204,7 @@ class Node
 		end
 		if (@position[0]+1) < 8 && (@position[1]-2) >= 0
 			move7 = [@position[0] + 1,@position[1] - 2]
-			node = Node.new(@position,move7)
+			node = Node.new(self,move7)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -212,7 +212,7 @@ class Node
 		end
 		if (@position[0]-1) >= 0 && (@position[1]-2) >= 0
 			move8 = [@position[0] - 1,@position[1] - 2]
-			node = Node.new(@position,move8)
+			node = Node.new(self,move8)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -228,7 +228,7 @@ class Node
 	
 		if ((@position[0]+2) < 8 && (@position[1]+1) < 8)
 			move1 = [@position[0] + 2,@position[1] + 1]
-			node = Node.new(@position,move1)
+			node = Node.new(self,move1)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -236,7 +236,7 @@ class Node
 		end
 		if (@position[0]-2) >= 0 && (@position[1]-1) >= 0
 			move2 = [@position[0] - 2,@position[1] - 1]
-			node = Node.new(@position,move2)
+			node = Node.new(self,move2)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -244,7 +244,7 @@ class Node
 		end
 		if (@position[0]-2) >= 0 && (@position[1]+1) < 8
 			move3 = [@position[0] - 2,@position[1] + 1]
-			node = Node.new(@position,move3)
+			node = Node.new(self,move3)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -252,7 +252,7 @@ class Node
 		end
 		if (@position[0]+2) < 8 && (@position[1]-1) >= 0
 			move4 = [@position[0] + 2,@position[1] - 1]
-			node = Node.new(@position,move4)
+			node = Node.new(self,move4)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -260,7 +260,7 @@ class Node
 		end
 		if (@position[0]+1) < 8 && (@position[1]+2) < 8
 			move5 = [@position[0] + 1,@position[1] + 2]
-			node = Node.new(@position,move5)
+			node = Node.new(self,move5)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -268,7 +268,7 @@ class Node
 		end
 		if (@position[0]-1) >=0 && (@position[1]+2) < 8
 			move6 = [@position[0] - 1,@position[1] + 2]
-			node = Node.new(@position,move6)
+			node = Node.new(self,move6)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -276,7 +276,7 @@ class Node
 		end
 		if (@position[0]+1) < 8 && (@position[1]-2) >= 0
 			move7 = [@position[0] + 1,@position[1] - 2]
-			node = Node.new(@position,move7)
+			node = Node.new(self,move7)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -284,7 +284,7 @@ class Node
 		end
 		if (@position[0]-1) >= 0 && (@position[1]-2) >= 0
 			move8 = [@position[0] - 1,@position[1] - 2]
-			node = Node.new(@position,move8)
+			node = Node.new(self,move8)
 			#if !$visited.include? node.position
 				@children << node; 
 			#end
@@ -356,9 +356,9 @@ end
 def get_path(node)
 	path =[]
 	count = 0
-	path << node.position
+	path << node
 	current = node.predecessor
-	puts current
+	
 	while current != nil
 		path << current
 		if current != nil
@@ -367,11 +367,11 @@ def get_path(node)
 		count = count + 1
 	end
 	puts "It took #{count} moves and the path is: "
-	path.each { |node| puts "#{node.position}"}
+	path.reverse.each { |node| puts "#{node.position}"}
 end
 
 start = [0,0]
-target = [3,3]
+target = [5,4]
 
 #print possible_moves(start)
 puts ""
