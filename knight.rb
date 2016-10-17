@@ -17,8 +17,6 @@ class Tree
 		$visited = [starting_position]
 	end
 
-	
-
 end
 
 class Node
@@ -34,120 +32,122 @@ class Node
 		
 		if ((@position[0]+2) < 8 && (@position[1]+1) < 8)
 			move1 = [@position[0] + 2,@position[1] + 1]
-			
-				node = Node.new(@position,move1)
-					$visited << node.position
-				@children << node; end
+			node = Node.new(@position,move1)
+				$visited << node.position
+			@children << node; end
 		if (@position[0]-2) >= 0 && (@position[1]-1) >= 0
 			move2 = [@position[0] - 2,@position[1] - 1]
 			node = Node.new(@position,move2)
 				$visited << node.position
-			@children << Node.new(@position,move2);end
+			@children << node;end
 		if (@position[0]-2) >= 0 && (@position[1]+1) < 8
 			move3 = [@position[0] - 2,@position[1] + 1]
 			node = Node.new(@position,move3)
 				$visited << node.position
-			@children << Node.new(@position,move3);end
+			@children << node;end
 		if (@position[0]+2) < 8 && (@position[1]-1) >= 0
 			move4 = [@position[0] + 2,@position[1] - 1]
 			node = Node.new(@position,move4)
 				$visited << node.position
-			@children << Node.new(@position,move4);end
+			@children << node;end
 		if (@position[0]+1) < 8 && (@position[1]+2) < 8
 			move5 = [@position[0] + 1,@position[1] + 2]
 			node = Node.new(@position,move5)
 				$visited << node.position
-			@children << Node.new(@position,move5);end
+			@children << node;end
 		if (@position[0]-1) >=0 && (@position[1]+2) < 8
 			move6 = [@position[0] - 1,@position[1] + 2]
 			node = Node.new(@position,move6)
 				$visited << node.position
-			@children << Node.new(@position,move6);end
+			@children << node;end
 		if (@position[0]+1) < 8 && (@position[1]-2) >= 0
 			move7 = [@position[0] + 1,@position[1] - 2]
 			node = Node.new(@position,move7)
 				$visited << node.position
-			@children << Node.new(@position,move7);end
+			@children << node;end
 		if (@position[0]-1) >= 0 && (@position[1]-2) >= 0
 			move8 = [@position[0] - 1,@position[1] - 2]
 			node = Node.new(@position,move8)
 				$visited << node.position
-			@children << Node.new(@position,move8)			
+			@children << node			
 		end
-		
-		@children.each { |child| child.make_children2}
+		puts  "We have visited #{$visited.uniq.length} unique squares"
+			@children.each { |child| child.make_children2}
 		
 	end
 
+
+
 	def make_children2
-		
+		return "Finished" if $visited.uniq.length >= 64
 	
 		if ((@position[0]+2) < 8 && (@position[1]+1) < 8)
 			move1 = [@position[0] + 2,@position[1] + 1]
 			node = Node.new(@position,move1)
-			if !$visited.include? node.position
+			#if !$visited.include? node.position
 				@children << node; 
-			end
+			#end
 			$visited << node.position
 		end
 		if (@position[0]-2) >= 0 && (@position[1]-1) >= 0
 			move2 = [@position[0] - 2,@position[1] - 1]
 			node = Node.new(@position,move2)
-			if !$visited.include? node.position
+			#if !$visited.include? node.position
 				@children << node; 
-			end
+			#end
 			$visited << node.position
 		end
 		if (@position[0]-2) >= 0 && (@position[1]+1) < 8
 			move3 = [@position[0] - 2,@position[1] + 1]
 			node = Node.new(@position,move3)
-			if !$visited.include? node.position
+			#if !$visited.include? node.position
 				@children << node; 
-			end
+			#end
 			$visited << node.position
 		end
 		if (@position[0]+2) < 8 && (@position[1]-1) >= 0
 			move4 = [@position[0] + 2,@position[1] - 1]
 			node = Node.new(@position,move4)
-			if !$visited.include? node.position
+			#if !$visited.include? node.position
 				@children << node; 
-			end
+			#end
 			$visited << node.position
 		end
 		if (@position[0]+1) < 8 && (@position[1]+2) < 8
 			move5 = [@position[0] + 1,@position[1] + 2]
 			node = Node.new(@position,move5)
-			if !$visited.include? node.position
+			#if !$visited.include? node.position
 				@children << node; 
-			end
+			#end
 			$visited << node.position
 		end
 		if (@position[0]-1) >=0 && (@position[1]+2) < 8
 			move6 = [@position[0] - 1,@position[1] + 2]
 			node = Node.new(@position,move6)
-			if !$visited.include? node.position
+			#if !$visited.include? node.position
 				@children << node; 
-			end
+			#end
 			$visited << node.position
 		end
 		if (@position[0]+1) < 8 && (@position[1]-2) >= 0
 			move7 = [@position[0] + 1,@position[1] - 2]
 			node = Node.new(@position,move7)
-			if !$visited.include? node.position
+			#if !$visited.include? node.position
 				@children << node; 
-			end
+			#end
 			$visited << node.position
 		end
 		if (@position[0]-1) >= 0 && (@position[1]-2) >= 0
 			move8 = [@position[0] - 1,@position[1] - 2]
 			node = Node.new(@position,move8)
-			if !$visited.include? node.position
+			#if !$visited.include? node.position
 				@children << node; 
-			end
+			#end
 			$visited << node.position
 		end
+		puts  "We have visited #{$visited.uniq.length} unique squares"
 		@children.each { |child| child.make_children3}
-	
+		
 		
 	end
 
@@ -157,69 +157,141 @@ class Node
 		if ((@position[0]+2) < 8 && (@position[1]+1) < 8)
 			move1 = [@position[0] + 2,@position[1] + 1]
 			node = Node.new(@position,move1)
-			if !$visited.include? node.position
+			#if !$visited.include? node.position
 				@children << node; 
-			end
+			#end
 			$visited << node.position
 		end
 		if (@position[0]-2) >= 0 && (@position[1]-1) >= 0
 			move2 = [@position[0] - 2,@position[1] - 1]
 			node = Node.new(@position,move2)
-			if !$visited.include? node.position
+			#if !$visited.include? node.position
 				@children << node; 
-			end
+			#end
 			$visited << node.position
 		end
 		if (@position[0]-2) >= 0 && (@position[1]+1) < 8
 			move3 = [@position[0] - 2,@position[1] + 1]
 			node = Node.new(@position,move3)
-			if !$visited.include? node.position
+			#if !$visited.include? node.position
 				@children << node; 
-			end
+			#end
 			$visited << node.position
 		end
 		if (@position[0]+2) < 8 && (@position[1]-1) >= 0
 			move4 = [@position[0] + 2,@position[1] - 1]
 			node = Node.new(@position,move4)
-			if !$visited.include? node.position
+			#if !$visited.include? node.position
 				@children << node; 
-			end
+			#end
 			$visited << node.position
 		end
 		if (@position[0]+1) < 8 && (@position[1]+2) < 8
 			move5 = [@position[0] + 1,@position[1] + 2]
 			node = Node.new(@position,move5)
-			if !$visited.include? node.position
+			#if !$visited.include? node.position
 				@children << node; 
-			end
+			#end
 			$visited << node.position
 		end
 		if (@position[0]-1) >=0 && (@position[1]+2) < 8
 			move6 = [@position[0] - 1,@position[1] + 2]
 			node = Node.new(@position,move6)
-			if !$visited.include? node.position
+			#if !$visited.include? node.position
 				@children << node; 
-			end
+			#end
 			$visited << node.position
 		end
 		if (@position[0]+1) < 8 && (@position[1]-2) >= 0
 			move7 = [@position[0] + 1,@position[1] - 2]
 			node = Node.new(@position,move7)
-			if !$visited.include? node.position
+			#if !$visited.include? node.position
 				@children << node; 
-			end
+			#end
 			$visited << node.position
 		end
 		if (@position[0]-1) >= 0 && (@position[1]-2) >= 0
 			move8 = [@position[0] - 1,@position[1] - 2]
 			node = Node.new(@position,move8)
-			if !$visited.include? node.position
+			#if !$visited.include? node.position
 				@children << node; 
-			end
+			#end
 			$visited << node.position
 		end
+		puts  "We have visited #{$visited.uniq.length} unique squares"
+		@children.each { |child| child.make_children4}
+		
+	end
+
+	def make_children4
 		
 	
+		if ((@position[0]+2) < 8 && (@position[1]+1) < 8)
+			move1 = [@position[0] + 2,@position[1] + 1]
+			node = Node.new(@position,move1)
+			#if !$visited.include? node.position
+				@children << node; 
+			#end
+			$visited << node.position
+		end
+		if (@position[0]-2) >= 0 && (@position[1]-1) >= 0
+			move2 = [@position[0] - 2,@position[1] - 1]
+			node = Node.new(@position,move2)
+			#if !$visited.include? node.position
+				@children << node; 
+			#end
+			$visited << node.position
+		end
+		if (@position[0]-2) >= 0 && (@position[1]+1) < 8
+			move3 = [@position[0] - 2,@position[1] + 1]
+			node = Node.new(@position,move3)
+			#if !$visited.include? node.position
+				@children << node; 
+			#end
+			$visited << node.position
+		end
+		if (@position[0]+2) < 8 && (@position[1]-1) >= 0
+			move4 = [@position[0] + 2,@position[1] - 1]
+			node = Node.new(@position,move4)
+			#if !$visited.include? node.position
+				@children << node; 
+			#end
+			$visited << node.position
+		end
+		if (@position[0]+1) < 8 && (@position[1]+2) < 8
+			move5 = [@position[0] + 1,@position[1] + 2]
+			node = Node.new(@position,move5)
+			#if !$visited.include? node.position
+				@children << node; 
+			#end
+			$visited << node.position
+		end
+		if (@position[0]-1) >=0 && (@position[1]+2) < 8
+			move6 = [@position[0] - 1,@position[1] + 2]
+			node = Node.new(@position,move6)
+			#if !$visited.include? node.position
+				@children << node; 
+			#end
+			$visited << node.position
+		end
+		if (@position[0]+1) < 8 && (@position[1]-2) >= 0
+			move7 = [@position[0] + 1,@position[1] - 2]
+			node = Node.new(@position,move7)
+			#if !$visited.include? node.position
+				@children << node; 
+			#end
+			$visited << node.position
+		end
+		if (@position[0]-1) >= 0 && (@position[1]-2) >= 0
+			move8 = [@position[0] - 1,@position[1] - 2]
+			node = Node.new(@position,move8)
+			#if !$visited.include? node.position
+				@children << node; 
+			#end
+			$visited << node.position
+		end
+		puts  "We have visited #{$visited.uniq.length} unique squares"
+		
 		
 	end
 end
@@ -254,15 +326,53 @@ def possible_moves(start)
 	return potential_moves
 end
 
+def knight_moves(start,target,tree)
+	queue = tree
+	queue2 = []
+		queue.each do |node|
+			queue2 << node.children
+			if node.position == target
+				get_path(node)
+				exit
+			end	
+		end
+		while queue2 != nil
+			queue2.each do |childrenarray|
+				childrenarray.each do |node|
+					current = node
+					if current.position == target
+						get_path(current)
+						exit
+					#else
+						#queue2 << current.children	
+					end	
+				end
+			end
+		end
+		#get path via while loop, while @node has a predecessor, that will be the path, and then keep storing and going up
+
+end
+
+def get_path(node)
+	path =[]
+	count = 0
+	while node.predecessor != nil
+		path << node.predecessor
+		count = count + 1
+	end
+	puts "It took #{count} moves and the path is: "
+	path.each { |node| puts "#{node.position}"}
+end
 
 start = [0,0]
-
+target = [6,6]
 
 #print possible_moves(start)
 puts ""
 tree = Tree.new(start)
 tree =  tree.source.make_children
 print tree
+
 
 
 puts "\n\nWe have visited #{$visited.uniq.length} unique squares and they are: #{$visited.uniq}\n\n"
@@ -278,6 +388,13 @@ queue2 = queue[0].children
 puts "\n\nThe parent is now #{queue[0].position}"
 puts "The children are: "
 queue2.each {|node| print node.position}
+
+puts ""
+queue3 = queue[2].children
+puts "\n\nThe parent is now #{queue[2].position}"
+puts "The children are: "
+queue3.each {|node| print node.position}
+
 puts "\n\nThe parent is: "
 print tree[1].position
 puts "\nAnd the children are: "
@@ -289,4 +406,6 @@ queue2 = queue[0].children
 puts "\n\nThe parent is now #{queue[0].position}"
 puts "The children are: "
 queue2.each {|node| print node.position}
+
+puts knight_moves(start,target,tree)
 

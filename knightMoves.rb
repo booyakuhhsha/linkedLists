@@ -158,6 +158,7 @@ puts "BFS"
 queue = [tree] #this is a fucking bullshit, youre putting array within array
 print tree.shift.position
 print tree.shift.position
+#There are only 2 items in the tree array
 print tree.shift.position
 
 
