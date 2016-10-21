@@ -174,6 +174,8 @@ class Node
 				@children << node
 			end
 		end
+
+
 		#puts "The children are: #{self.children}"
 		#puts  "We have visited #{$visited.uniq.length} unique squares"
 		
@@ -404,11 +406,83 @@ class Node
 			end
 		end
 		#puts  "We have visited #{$visited.uniq.length} unique squares"
-		
+		@children.each { |child| child.make_children6}
 		
 	end
 
-
+	def make_children6
+		
+	
+		if ((@position[0]+2) < 8 && (@position[1]+1) < 8)
+			move1 = [@position[0] + 2,@position[1] + 1]
+			
+			if move1 != self.predecessor.position
+				node = Node.new(self,move1)
+				$visited << node.position
+				@children << node
+			end
+		end
+				
+		if (@position[0]-2) >= 0 && (@position[1]-1) >= 0
+			move2 = [@position[0] - 2,@position[1] - 1]
+			if move2 != self.predecessor.position
+				node = Node.new(self,move2)
+				$visited << node.position
+				@children << node
+			end
+		end
+		if (@position[0]-2) >= 0 && (@position[1]+1) < 8
+			move3 = [@position[0] - 2,@position[1] + 1]
+			if move3 != self.predecessor.position
+				node = Node.new(self,move3)
+				$visited << node.position
+				@children << node
+			end
+		end
+		if (@position[0]+2) < 8 && (@position[1]-1) >= 0
+			move4 = [@position[0] + 2,@position[1] - 1]
+			if move4 != self.predecessor.position
+				node = Node.new(self,move4)
+				$visited << node.position
+				@children << node
+			end
+		end
+		if (@position[0]+1) < 8 && (@position[1]+2) < 8
+			move5 = [@position[0] + 1,@position[1] + 2]
+			if move5 != self.predecessor.position
+				node = Node.new(self,move5)
+				$visited << node.position
+				@children << node
+			end
+		end
+		if (@position[0]-1) >=0 && (@position[1]+2) < 8
+			move6 = [@position[0] - 1,@position[1] + 2]
+			if move6 != self.predecessor.position
+				node = Node.new(self,move6)
+				$visited << node.position
+				@children << node
+			end
+		end
+		if (@position[0]+1) < 8 && (@position[1]-2) >= 0
+			move7 = [@position[0] + 1,@position[1] - 2]
+			if move7 != self.predecessor.position
+				node = Node.new(self,move7)
+				$visited << node.position
+				@children << node
+			end
+		end
+		if (@position[0]-1) >= 0 && (@position[1]-2) >= 0
+			move8 = [@position[0] - 1,@position[1] - 2]
+			if move8 != self.predecessor.position
+				node = Node.new(self,move8)
+				$visited << node.position
+				@children << node
+			end
+		end
+		#puts  "We have visited #{$visited.uniq.length} unique squares"
+		
+		
+	end
 
 end
 
@@ -493,19 +567,17 @@ def get_path(node)
 	path.reverse.each { |node| puts "#{node.position}"}
 end
 
-start = [0,1]
-target = [7,7]
+start = [3,3]
+target = [4,3]
 
-#print possible_moves(start)
-puts ""
 tree = Tree.new(start)
 tree =  tree.source.make_children
-#print tree
+
 puts "Once upon a time there was a Knight"
 puts "He was on a chess board and he was on square #{start}"
 puts "But he wanted to get to square #{target}"
 puts "So his buddy Dom made him a program to help him find his path"
-puts "We have visited #{$visited.uniq.length} squares"
+puts "We have visited #{$visited.uniq.length} unique squares and #{$visited.length} total squares"
 print "Visited: #{$visited.uniq.sort}\n\n"
 
 
